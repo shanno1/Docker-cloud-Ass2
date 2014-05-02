@@ -1,0 +1,16 @@
+FROM ubuntu:latest
+#creates the container
+RUN sudo docker run -i -t ubuntu /bin/bash
+RUN cd /tmp
+
+#installing general requirements
+RUN apt-get install wget rpm build-essential
+
+# Download and installation of Nginx
+RUN wget http://nginx.org/packages/rhel/6/noarch/RPMS/nginx-release-rhel-6-0.el6.ngx.noarch.rpm
+RUN rpm -iv nginx-release-rhel-6-0.el6.ngx.noarch.rpm
+RUN apt-get install nginx
+
+#Creating the default config file for Nginx
+RUN cd /etc/nginx/conf.d
+RUN nano default.conf

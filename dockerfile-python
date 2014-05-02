@@ -1,0 +1,18 @@
+# create a container that accessible from the outside!
+RUN sudo docker run -i -t -p 80:80 ubuntu /bin/bash
+
+#Append Ubuntu's universe repository to the default list of application sources list of the base image.
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
+
+#Update the container
+RUN apt-get update
+
+#Installing a few resources needed for the web app 
+RUN apt-get install -y tar git curl nano wget dialog net-tools build-essential
+
+# Install pip's dependency: setuptools:
+RUN apt-get install -y python python-dev python-distribute python-pip
+
+#Install flask
+RUN apt-get install flask
+
